@@ -107,11 +107,17 @@ public class FilePrio implements File {
 
 
     @Override
-    public int taille(FilePrio a)
-    { if (last.suiv==null)
-      return 0;
-    else
-        return 1+taille(first.suiv);
+    public int taille()
+
+    {
+        int nb=0;
+        FilePrio l=first;
+        while(l!=null)
+        { nb++;
+        l=l.suiv;
+
+        }
+        return nb;
     }
 
     public String getNom() {

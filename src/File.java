@@ -4,5 +4,5 @@ public interface File {
     public FilePrio defiler() throws FileException;
     public FilePrio tete() throws FileException;
     public boolean estVide();
-    public  int taille(FilePrio a);
+    public  int taille();
 }
