@@ -5,27 +5,25 @@ public class Test {
      FilePrio liste=new FilePrio();
      liste.creer();
      try {
+         System.out.println(liste.estVide());
          liste.enfiler("Hiba",3);
-         liste.enfiler("Zola",2);
-         liste.enfiler("dd",4);
-         liste.enfiler("lin",5);
+         //liste.enfiler("Zola",2);
+         //liste.enfiler("dd",4);
+         //liste.enfiler("lin",5);
+         System.out.println(liste.estVide());
          liste.afficher();
-         /*if(liste.tete()!=null)
-         {
-             System.out.println("premier elmnt est :"+liste.getFirst().getNom());
-             System.out.println("suiv d 1er elmnt :"+liste.getFirst().getSuiv().getNom());
-             System.out.println(liste.getFirst().getPreced());
+         a=liste.defiler();
+         System.out.println("********************");
+         System.out.println("elemnt suprimer est :"+a.getNom());
+         System.out.println(liste.estVide());
 
-             System.out.println("dernier elmnt :"+liste.getLast().getNom());
-             System.out.println("precedent d dernier elmnt :"+liste.getLast().getPreced().getNom());
-             System.out.println(liste.getLast().getSuiv());
-         }*/
+
      }
      catch (FileException e)
      {
          System.out.println("parametre invalide");
      }
    // System.out.println("la taille de la file : "+liste.taille(liste));
-   // System.out.println(liste.estVide());
+
     }
 }

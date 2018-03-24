@@ -3,15 +3,7 @@ public class FilePrio implements File {
     private int prio;
     FilePrio suiv,preced,first=null,last=null;
 
-    /*Constructeur
-    public FilePrio(String nom,int prio)
-    {
-        this.nom=nom;
-        this.prio=prio;
-        this.suiv=null;
-        this.preced=null;
-    }
-*/
+
     @Override
     public FilePrio creer() {
         return null;
@@ -30,7 +22,7 @@ public class FilePrio implements File {
            this.preced=null;
            first=this;
            last=this;
-           System.out.println("insertion 1er elmnt");
+          // System.out.println("insertion 1er elmnt");
 
        }
        else
@@ -39,9 +31,9 @@ public class FilePrio implements File {
                a.nom=n;
                a.prio=p;
            if(last.prio<p)
-           { System.out.println("3");
+           {// System.out.println("3");
                last.suiv=a;
-               a.preced=this;
+               a.preced=last;
                a.suiv=null;
                last=a;
            }
@@ -53,7 +45,7 @@ public class FilePrio implements File {
            {
                if(a.prio>l.prio && a.prio<l.suiv.prio)
                {
-                   System.out.println("insertion au milieu");
+                   //System.out.println("insertion au milieu");
                        q=l.suiv;
                        l.suiv=a;
                        a.suiv=q;
@@ -65,7 +57,7 @@ public class FilePrio implements File {
            }
          if(!insertion)
          {
-               System.out.println("insertion au debut");
+               //System.out.println("insertion au debut");
                a.suiv=first;
                first.preced=a;
                a.preced=null;
@@ -77,25 +69,24 @@ public class FilePrio implements File {
        }
     }
 
-    public void afficher(){
-        FilePrio l=first;
-        while(l!=null)
-        {
-            System.out.println("Nom :"+l.nom);
-            l=l.suiv;
 
-        }
-    }
     @Override
     public FilePrio defiler() throws FileException {
         if(estVide())
             throw new FileException();
-        FilePrio p;
-        p=last.preced;
-        last.preced=null;
-        last=p;
-        last.suiv=null;
-        return last;
+        FilePrio p=last;
+
+        if(last!=first)
+        {
+            last=p.preced;
+            p.preced=null;
+            last.suiv=null;
+        }
+        else
+         { last=null;
+           first=null;
+         }
+        return p;
 
     }
 
@@ -108,35 +99,12 @@ public class FilePrio implements File {
 
     }
 
-    public String getNom() {
-        return nom;
-    }
-
     @Override
     public boolean estVide()
     {
        return first==null;
     }
 
-    public int getPrio() {
-        return prio;
-    }
-
-    public FilePrio getSuiv() {
-        return suiv;
-    }
-
-    public FilePrio getPreced() {
-        return preced;
-    }
-
-    public FilePrio getLast() {
-        return last;
-    }
-
-    public FilePrio getFirst() {
-        return first;
-    }
 
     @Override
     public int taille(FilePrio a)
@@ -144,5 +112,20 @@ public class FilePrio implements File {
       return 0;
     else
         return 1+taille(first.suiv);
+    }
+
+    public String getNom() {
+        return nom;
+    }
+    public void afficher(){
+        FilePrio l=first;
+        while(l!=null)
+        {   if(l.suiv!=null && l.preced!=null)
+            System.out.println("Nom :"+l.nom+"suivant:"+l.suiv.nom+"preced:"+l.preced.nom);
+        else
+            System.out.println("je ss le dernie ou le premier :"+l.nom);
+            l=l.suiv;
+
+        }
     }
 }
